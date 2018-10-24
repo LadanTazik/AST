@@ -14,6 +14,7 @@ public class Main {
      */
     public static void main(String[] args) {
         System.out.println("Hello! This AST!\n");
+        System.out.println("Test");
         String[] files = FileUtils.listSourceCodeFiles(args, ".java");
         for (String javaFile : files) {
             try {
