@@ -1,0 +1,10 @@
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/test/
+/nbproject/private/
+/.nb-gradle/
+
+*.dot
+
