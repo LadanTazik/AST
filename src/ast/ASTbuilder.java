@@ -165,16 +165,37 @@ public class ASTbuilder {
 			parentStack.push(classNode);
 			visit(ctx.classBody());
 			parentStack.pop();
+            
+           
             return null;
         }
         
         @Override
         public String visitClassBody(JavaParser.ClassBodyContext ctx) {
-            ASNode node = new ASNode(ASNode.Type.BLOCK);
-            node.setValue("{ Class Body }");
+         //   classBodyDeclaration
+         //   ';'
+         //   'static'? block  modifier* memberDeclaration
+             //         
+            ASNode node = new ASNode(ASNode.Type.FIELDS);
             ast.addVertex(node);
             ast.addEdge(parentStack.peek(), node);
+            
+            //
+            ASNode constructorsNode = new ASNode(ASNode.Type.CONSTRUCTORS);
+            ast.addVertex(constructorsNode);
+            ast.addEdge(parentStack.peek(), constructorsNode);
+            
+            //
+            ASNode methodsNode = new ASNode(ASNode.Type.METHODS);
+            ast.addVertex(methodsNode);
+            ast.addEdge(parentStack.peek(), methodsNode);
+            
+            //
+            ASNode typesNode = new ASNode(ASNode.Type.TYPES);
+            ast.addVertex(typesNode);
+            ast.addEdge(parentStack.peek(), typesNode);
+            
             return null;
         }
-    }
+    }   
 }
