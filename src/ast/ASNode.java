@@ -27,7 +27,31 @@ public class ASNode {
         FIELDS("FIELDS"),
         METHODS("METHODS"),
         CONSTRUCTORS("CONSTRUCTORS"),
-        TYPES("TYPES");
+        TYPES("TYPES"),
+        TYPE("TYPE"),
+        VARDECLARATION ("VARIABLE"),
+        RETURN ("RETURN"),
+        PARAMETERS ("PARAMETERS"),
+        PARAMETER ("PARAMETER"),
+        METHODBODY ("METHODBODY"),
+        IFSTATEMENT("IF"),
+        VARIABLE("VARIABLE"),
+        INITIALVALUE("INITIAL VALUE"),
+        CONDITION("CONDITIONS"),
+        ELSEIF("ELSE"),
+        EPSILON(""),
+        FOR("FOR"),
+        FORCONTROOL("FOR CONTROL"),
+        FOR_INIT("FOR INIT"),
+        FOR_UPDATE("FOR UPDATE"),
+        WHILE ("WHILE"),
+        DOWHILE("DO WHILE"),
+        TRY("TRY"),
+        SWITCH("SWITCH"),
+        FINALLY("FINALLY"),
+        CATCH("CATCH"),
+        STATEMENT("STATEMENT"),
+        RESOURCE("RESOURCE");
 
         public final String label;
 
