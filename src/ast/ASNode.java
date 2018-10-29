@@ -51,7 +51,9 @@ public class ASNode {
         FINALLY("FINALLY"),
         CATCH("CATCH"),
         STATEMENT("STATEMENT"),
-        RESOURCE("RESOURCE");
+        RESOURCE("RESOURCE"),
+        EXPRESSION("EXPRESSION"),
+        CASE("CASE");
 
         public final String label;
 

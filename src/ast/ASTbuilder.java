@@ -687,7 +687,66 @@ public class ASTbuilder {
             return null;
         }
         
+        @Override
+		public String visitSwitchStatement(JavaParser.SwitchStatementContext ctx) {
+			// 'switch' parExpression '{' switchBlockStatementGroup* switchLabel* '}'
+            
+            ASNode node = new ASNode (ASNode.Type.SWITCH);
+            ast.addVertex(node);
+            ast.addEdge(parentStack.peek(),node);
+            //
+            ASNode expr = new ASNode (ASNode.Type.EXPRESSION);
+            ast.addVertex(expr);
+            expr.setValue(ctx.parExpression().getText());
+            ast.addEdge(node,expr);
+            
+            //
+            //parentStack.push(node);
+            for (JavaParser.SwitchLabelContext lb: ctx.switchLabel()){
+                //switchBlockStatementGroup  :   switchLabel+ blockStatement+
+                //    switchLabel :   'case' constantExpression ':'
+                              //  |   'case' enumConstantName ':'
+               //                 |   'default' ':'
+    ;
+                
+                if(lb.constantExpression() != null || lb.enumConstantName()!=null)
+                {
+                    ASNode cnode = new ASNode (ASNode.Type.CASE);
+                    ast.addVertex(cnode);
+                    ast.addEdge(node, cnode);
+                  //  
+                    ASNode val = new ASNode(ASNode.Type.INITIALVALUE);
+                    ast.addVertex(val);
+                    if(lb.constantExpression() != null)
+                     val.setValue(lb.constantExpression().getText());
+                        else if(lb.enumConstantName()!=null)
+                                val.setValue(lb.enumConstantName().getText());
+                    ast.addEdge(cnode, val);
+                    parentStack.push(cnode);
+                }
+                    else
+                   {
+                      ASNode dnode = new ASNode (ASNode.Type.DEFAULT);
+                       ast.addVertex(dnode);
+                       ast.addEdge(node, dnode); 
+                       parentStack.push(dnode);
+                   }
+                
+                ASNode block = new ASNode(ASNode.Type.BLOCK);
+                
+                for (JavaParser.SwitchBlockStatementGroupContext grp: ctx.switchBlockStatementGroup()) {
+                    for (JavaParser.BlockStatementContext blk: grp.blockStatement()){
+                        
+                        ast.addVertex(block);
+                        ast.addEdge(parentStack.peek(), block);
+                        visit(blk);
+                        parentStack.pop();
+                    }
+		
+            }
+        return null;
         
+        }
      }
         
         
