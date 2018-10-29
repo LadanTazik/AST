@@ -36,7 +36,7 @@ public class ASNode {
         METHODBODY ("METHODBODY"),
         IFSTATEMENT("IF"),
         VARIABLE("VARIABLE"),
-        INITIALVALUE("INITIAL VALUE"),
+        INITIALVALUE("VALUE"),
         CONDITION("CONDITIONS"),
         ELSEIF("ELSE"),
         EPSILON(""),
@@ -53,7 +53,8 @@ public class ASNode {
         STATEMENT("STATEMENT"),
         RESOURCE("RESOURCE"),
         EXPRESSION("EXPRESSION"),
-        CASE("CASE");
+        CASE("CASE"),
+        DEFAULT("DEFAULT");
 
         public final String label;
 

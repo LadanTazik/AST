@@ -20,7 +20,7 @@ public class Main {
             try {
                 System.out.println("\n========================================\n");
                 System.out.println("FILE: " + javaFile);
-                AbstractSyntaxTree ast = ASTbuilder.build(javaFile);
+                 AbstractSyntaxTree ast = ASTbuilder.build(javaFile);
                 ast.exportDOT("./");
             } catch (IOException ex) {
                 System.err.println(ex);
